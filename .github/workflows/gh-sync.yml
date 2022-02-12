@@ -28,4 +28,4 @@ jobs:
           azure-pipeline-name: 'gh-sync' 
           azure-devops-token: ${{ steps.AzureKeyVault.outputs.qdkBuildPAT }}
           env:
-            GITHUB_TOKEN: {{ secrets.GITHUB_TOKEN }}
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
