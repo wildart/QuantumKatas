@@ -1,0 +1,31 @@
+name: Sync gh with ado
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - imiles/task-37413
+
+jobs:
+  sync-repos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to Azure
+        uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - id: AzureKeyVault
+        uses: Azure/get-keyvault-secrets@v1
+        with:
+          keyvault: 'kv-qdk-build'
+          secrets: 'qdkBuildPAT'
+
+      - name: 'Trigger gh-sync'
+        uses: Azure/pipelines@releases/v1
+        with:
+          azure-devops-project-url: 'https://dev.azure.com/ms-quantum/Sandbox'
+          azure-pipeline-name: 'gh-sync' 
+          azure-devops-token: ${{ steps.AzureKeyVault.outputs.qdkBuildPAT }}
+          env:
+            GITHUB_TOKEN: {{ secrets.GITHUB_TOKEN }}
