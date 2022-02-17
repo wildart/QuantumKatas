@@ -19,3 +19,4 @@ jobs:
           azure-devops-token: ${{ secrets.AZURE_DEVOPS_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ADO_TOKEN: ${{ secrets.AZURE_DEVOPS_TOKEN }}
