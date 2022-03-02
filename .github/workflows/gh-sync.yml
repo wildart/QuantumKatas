@@ -1,6 +1,9 @@
 name: Sync GitHub with ADO
 
-on: issue_comment
+on:
+  push:
+    branches:
+      - imiles/task-37413
 
 jobs:
   build:
@@ -14,3 +17,4 @@ jobs:
           azure-devops-project-url: 'https://ms-quantum.visualstudio.com/Sandbox'
           azure-pipeline-name: 'gh-sync' 
           azure-devops-token: ${{ secrets.AZURE_DEVOPS_TOKEN }}
+    
