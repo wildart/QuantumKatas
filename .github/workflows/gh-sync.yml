@@ -1,14 +1,15 @@
-name: Sync gh with ado
+name: Sync GitHub with ADO
 
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - imiles/task-37413
+  issue_comment:
+    types: [ labeled ]
+  issues:
+    types: [ labeled ]
 
 jobs:
   build:
     name: Run gh-sync from Pipeline
+    if: ${{ github.event.label.name == 'ado-sync' }}
     runs-on: ubuntu-latest
     steps:
       - name: 'Trigger gh-sync'
@@ -17,6 +18,3 @@ jobs:
           azure-devops-project-url: 'https://ms-quantum.visualstudio.com/Sandbox'
           azure-pipeline-name: 'gh-sync' 
           azure-devops-token: ${{ secrets.AZURE_DEVOPS_TOKEN }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ADO_TOKEN: ${{ secrets.AZURE_DEVOPS_TOKEN }}
