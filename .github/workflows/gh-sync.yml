@@ -1,7 +1,6 @@
 name: Sync GitHub with ADO
 
-on:
-  issue_comment:
+on: issue_comment
 
 jobs:
   build:
