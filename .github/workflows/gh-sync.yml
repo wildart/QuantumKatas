@@ -1,6 +1,7 @@
 name: Sync GitHub with ADO
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - imiles/task-37413
