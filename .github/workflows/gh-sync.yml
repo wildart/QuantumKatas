@@ -1,7 +1,6 @@
 name: Sync GitHub with ADO
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - imiles/task-37413
@@ -9,7 +8,7 @@ on:
 jobs:
   build:
     name: Run gh-sync from Pipeline
-    if: ${{ github.event.label.name == 'ado-sync' }}
+#     if: ${{ github.event.label.name == 'ado-sync' }}
     runs-on: ubuntu-latest
     steps:
       - name: 'Trigger gh-sync'
