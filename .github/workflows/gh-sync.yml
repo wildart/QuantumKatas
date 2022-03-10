@@ -23,12 +23,12 @@ jobs:
         uses: Azure/get-keyvault-secrets@v1
         with:
           keyvault: 'kv-qdk-build'
-          secrets: 'qdkBuildPAT'
+          secrets: 'ghSyncBuildPAT'
           
       - name: 'Trigger gh-sync'
         uses: Azure/pipelines@releases/v1
         with:
           azure-devops-project-url: 'https://ms-quantum.visualstudio.com/Quantum Program'
           azure-pipeline-name: 'gh-sync' 
-          azure-devops-token: ${{ steps.AzureKeyVault.outputs.qdkBuildPAT }}
+          azure-devops-token: ${{ steps.AzureKeyVault.outputs.ghSyncBuildPAT }}
           azure-pipeline-variables: "{'issueNumber': ${{github.event.issue.number}}, 'repoName': 'QuantumKatas' }"
