@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     name: Run gh-sync from Pipeline
-    if: ${{ github.event.label.name == 'ado-sync' || contains(github.event.issue.labels.*.name, 'ado-sync') }}
+#     if: ${{ github.event.label.name == 'ado-sync' || contains(github.event.issue.labels.*.name, 'ado-sync') }}
     runs-on: ubuntu-latest
     steps:
       - name: Login to Azure
