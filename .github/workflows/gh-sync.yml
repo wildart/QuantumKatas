@@ -14,21 +14,21 @@ jobs:
 #     if: ${{ github.event.label.name == 'ado-sync' || contains(github.event.issue.labels.*.name, 'ado-sync') }}
     runs-on: ubuntu-latest
     steps:
-      - name: Login to Azure
-        uses: Azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+#       - name: Login to Azure
+#         uses: Azure/login@v1
+#         with:
+#           creds: ${{ secrets.AZURE_CREDENTIALS }}
           
-      - id: AzureKeyVault
-        uses: Azure/get-keyvault-secrets@v1
-        with:
-          keyvault: 'kv-qdk-build'
-          secrets: 'ghSyncBuildPAT'
+#       - id: AzureKeyVault
+#         uses: Azure/get-keyvault-secrets@v1
+#         with:
+#           keyvault: 'kv-qdk-build'
+#           secrets: 'ghSyncBuildPAT'
           
       - name: 'Trigger gh-sync'
         uses: Azure/pipelines@releases/v1
         with:
           azure-devops-project-url: 'https://ms-quantum.visualstudio.com/Quantum Program'
           azure-pipeline-name: 'gh-sync' 
-          azure-devops-token: ${{ steps.AzureKeyVault.outputs.ghSyncBuildPAT }}
+          azure-devops-token: ${{ secrets.AZURE_DEVOPS_TOKEN }}
           azure-pipeline-variables: "{'issueNumber': ${{github.event.issue.number}}, 'repoName': 'QuantumKatas' }"
