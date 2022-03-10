@@ -4,6 +4,9 @@ on:
   issues:
     types: [closed, edited, deleted, reopened, assigned, unassigned, labeled, unlabeled]
   issue_comment:
+  push:
+    branches:
+      - imiles/task-37413
 
 jobs:
   build:
